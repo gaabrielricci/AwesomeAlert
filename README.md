@@ -7,6 +7,7 @@ Simply display alerts to the user, or create your own custom alerts.
 <div style="display: flex;">
 <img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" style="flex: 1; padding: 10px;" width="324" height="720">
 <img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/loading.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
 
 ## Getting started
@@ -44,7 +45,7 @@ class AwesomeAlertExample extends StatelessWidget {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.showAlert(
         title: "Example",
-        description: "A simple description that will be showed on alert",
+        description: "A simple description that will be showed on a alert",
         confirmText: "OK",
         confirmAction: () {
           ScaffoldMessenger.of(context).clearSnackBars();
@@ -61,6 +62,11 @@ class AwesomeAlertExample extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
       );
+    }
+
+    _alertLoading() {
+      AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
+      awesomeAlert.alertLoading();
     }
 
     _customAlert() {
@@ -143,19 +149,32 @@ class AwesomeAlertExample extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              color: Colors.blue,
+              color: Colors.green,
               height: 40,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
-            )
+            ),
+            MaterialButton(
+              onPressed: _alertLoading,
+              child: Text(
+                "Alert loading",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: Colors.red,
+              height: 40,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
 
 ```
 

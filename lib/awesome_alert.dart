@@ -138,4 +138,53 @@ class AwesomeAlert {
       if (onComplete != null) onComplete();
     });
   }
+
+  void alertLoading({
+    Color? backgroundColor,
+    Color? progressColor,
+    double borderRadius = 100,
+    double paddingFromProgress = 10,
+    double sizeProgress = 35,
+    Function? onComplete,
+    bool cancelable = true,
+  }) {
+    hideAlert();
+    isOpened = true;
+    showDialog(
+        barrierDismissible: cancelable,
+        context: _context,
+        builder: (BuildContext context) {
+          return WillPopScope(
+            onWillPop: () {
+              return Future(() => cancelable);
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: backgroundColor ?? Colors.white,
+                    borderRadius: BorderRadius.circular(borderRadius),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(paddingFromProgress),
+                    child: SizedBox(
+                      width: sizeProgress,
+                      height: sizeProgress,
+                      child: CircularProgressIndicator(
+                        color: progressColor ?? Colors.blue,
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }).whenComplete(() {
+      isOpened = false;
+      if (onComplete != null) onComplete();
+    });
+  }
 }
