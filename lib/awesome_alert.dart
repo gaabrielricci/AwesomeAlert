@@ -1,6 +1,7 @@
 library awesome_alert;
 
 import 'package:awesome_alert/widgets/default_alert_body.dart';
+import 'package:awesome_alert/widgets/image_alert_body.dart';
 import 'package:flutter/material.dart';
 
 class AwesomeAlert {
@@ -76,7 +77,7 @@ class AwesomeAlert {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(paddingBody),
-                  child: DefaultAlertBody(
+                  child: BodyDefaultAlert(
                     title: title,
                     description: description,
                     paddingScreen: paddingScreen,
@@ -86,6 +87,15 @@ class AwesomeAlert {
                     paddingBody: paddingBody,
                     confirmText: confirmText,
                     confirmAction: confirmAction,
+                    buttonTextStyle: buttonTextStyle,
+                    cancelAction: cancelAction,
+                    cancelText: cancelText,
+                    cancelColor: cancelColor,
+                    confirmColor: confirmColor,
+                    descriptionStyle: descriptionStyle,
+                    textAlignMsg: textAlignMsg,
+                    titleStyle: titleStyle,
+                    body: body,
                   ),
                 ),
               )),
@@ -97,7 +107,7 @@ class AwesomeAlert {
     });
   }
 
-  void showCustomAleert({
+  void showCustomAlert({
     required Widget? body,
     Function? onComplete,
     bool cancelable = false,
@@ -188,5 +198,31 @@ class AwesomeAlert {
       isOpened = false;
       if (onComplete != null) onComplete();
     });
+  }
+
+  void alertImage({
+    required String? imageUrl,
+    required String? imageLocal,
+    Function? onClose,
+    double? width,
+    double borderRadius = 10,
+    double paddingFromPhoneBorder = 10,
+    double closeIconSize = 25,
+    required BoxFit fit,
+  }) {
+    showCustomAlert(
+      body: BodyAlertImage(
+        imageLocal: imageLocal,
+        onClose: onClose ?? hideAlert,
+        borderRadius: borderRadius,
+        imageUrl: imageUrl,
+        width: width,
+        closeIconSize: closeIconSize,
+        fit: fit,
+      ),
+      cancelable: true,
+      paddingScreen: paddingFromPhoneBorder,
+      cornerRadius: borderRadius,
+    );
   }
 }

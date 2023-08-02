@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DefaultAlertBody extends StatelessWidget {
-  const DefaultAlertBody({
+class BodyDefaultAlert extends StatelessWidget {
+  const BodyDefaultAlert({
     super.key,
     required this.title,
     required this.description,

@@ -7,7 +7,8 @@ Simply display alerts to the user, or create your own custom alerts.
 <div style="display: flex;">
 <img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" style="flex: 1; padding: 10px;" width="324" height="720">
 <img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/loading.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/loading.png" alt="Loading" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/image.png" alt="Image" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
 
 ## Getting started
@@ -32,7 +33,6 @@ Enjoy.
 This a simple stateless screen with usage example.
 
 ```dart
-
 import 'package:flutter/material.dart';
 import 'package:awesome_alert/awesome_alert.dart';
 
@@ -52,7 +52,7 @@ class AwesomeAlertExample extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pressed")));
           awesomeAlert.hideAlert();
         },
-        cancelText: "Voltar",
+        cancelText: "Back",
         cancelAction: () {
           awesomeAlert.hideAlert();
         },
@@ -66,12 +66,28 @@ class AwesomeAlertExample extends StatelessWidget {
 
     _alertLoading() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
-      awesomeAlert.alertLoading();
+      awesomeAlert.alertLoading(
+          sizeProgress: 40,
+          paddingFromProgress: 15,
+          onComplete: () {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Alert hidded")));
+          });
+    }
+
+    _alertImage() {
+      AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
+      awesomeAlert.alertImage(
+        imageLocal: null,
+        imageUrl: "https://riccimobile.com.br/github/flutter/awsomealert/cat.jpeg",
+        borderRadius: 15,
+        fit: BoxFit.cover,
+      );
     }
 
     _customAlert() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
-      awesomeAlert.showCustomAleert(
+      awesomeAlert.showCustomAlert(
         body: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(
@@ -164,6 +180,20 @@ class AwesomeAlertExample extends StatelessWidget {
                 ),
               ),
               color: Colors.red,
+              height: 40,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+            ),
+            MaterialButton(
+              onPressed: _alertImage,
+              child: Text(
+                "Alert image",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: Colors.pink,
               height: 40,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),

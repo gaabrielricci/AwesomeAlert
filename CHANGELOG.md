@@ -1,14 +1,20 @@
+## 0.0.4
+
+* Add AlertImage "awesomeAlert.alertImage()", simple way to you can load image from web or local
+  image into alert.
+* Fix body of showAlert properties.
+
 ## 0.0.3
 
-* just to fix the post display on pub.dev
+* just to fix the post display on pub.dev.
 
 ## 0.0.2
 
-* Alert loading.
+* Add Alert loading "awesomeAlert.alertLoading()".
 
 ## 0.0.1
 
-* Simple alert.
-* Simple alert with custom body
+* Simple alert "awesomeAlert.showAlert()).
+* Simple alert with custom body "awesomeAlert.showCustomAleert()".
 
 
