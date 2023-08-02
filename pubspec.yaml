@@ -2,7 +2,7 @@ name: awesome_alert
 description: A simple way to show alerts
 version: 0.0.4
 homepage: https://riccimobile.com.br
-repository: https://github.com/gaabrielricci/AwsomeAlert
+repository: https://github.com/gaabrielricci/AwesomeAlert
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
