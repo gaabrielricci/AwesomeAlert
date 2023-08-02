@@ -12,8 +12,8 @@ and the Flutter guide for
 -->
 
 
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" width="540" height="1200">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" width="540" height="1200">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" width="324" height="720">
 
 ## Features
 
