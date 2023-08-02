@@ -7,7 +7,7 @@ class BodyAlertImage extends StatelessWidget {
     this.width,
     required this.borderRadius,
     required this.imageUrl,
-    required this.imageLocal,
+    required this.isLocal,
     required this.closeIconSize,
     required this.fit,
     this.loadingColor,
@@ -17,9 +17,9 @@ class BodyAlertImage extends StatelessWidget {
   final double? width;
   final double borderRadius;
   final double closeIconSize;
-  final String? imageUrl;
-  final String? imageLocal;
-  final BoxFit fit;
+  final String imageUrl;
+  final bool isLocal;
+  final BoxFit? fit;
   final Color? loadingColor;
 
   @override
@@ -31,8 +31,8 @@ class BodyAlertImage extends StatelessWidget {
           width: width ?? double.infinity,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(borderRadius),
-            child: (imageUrl != null && imageUrl != "")
-                ? Image.network(imageUrl ?? "", fit: fit,
+            child: !isLocal
+                ? Image.network(imageUrl, fit: fit,
                     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
                     if (loadingProgress == null) {
                       return child;
@@ -44,7 +44,7 @@ class BodyAlertImage extends StatelessWidget {
                       ),
                     );
                   })
-                : Image.asset(imageLocal ?? "", fit: fit),
+                : Image.asset(imageUrl, fit: fit),
           ),
         ),
         InkWell(

@@ -5,10 +5,10 @@ Simply display alerts to the user, or create your own custom alerts.
 ## Images
 
 <div style="display: flex;">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/loading.png" alt="Loading" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/image.png" alt="Image" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awesomealert/simple.png" alt="Simple example" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awesomealert/custom.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awesomealert/loading.png" alt="Loading" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awesomealert/image.png" alt="Image" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
 
 ## Getting started
@@ -78,7 +78,8 @@ class AwesomeAlertExample extends StatelessWidget {
     _alertImage() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.alertImage(
-        imageLocal: null,
+        cancelable: true,
+        isLocal: false,
         imageUrl: "https://riccimobile.com.br/github/flutter/awsomealert/cat.jpeg",
         borderRadius: 15,
         fit: BoxFit.cover,
@@ -174,7 +175,7 @@ class AwesomeAlertExample extends StatelessWidget {
             MaterialButton(
               onPressed: _alertLoading,
               child: Text(
-                "Alert loading",
+                "Show Alert loading",
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -188,7 +189,7 @@ class AwesomeAlertExample extends StatelessWidget {
             MaterialButton(
               onPressed: _alertImage,
               child: Text(
-                "Alert image",
+                "Show Alert image",
                 style: TextStyle(
                   color: Colors.white,
                 ),

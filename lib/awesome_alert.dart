@@ -201,18 +201,19 @@ class AwesomeAlert {
   }
 
   void alertImage({
-    required String? imageUrl,
-    required String? imageLocal,
+    required String imageUrl,
+    bool? isLocal = false,
+    bool? cancelable = true,
     Function? onClose,
     double? width,
     double borderRadius = 10,
     double paddingFromPhoneBorder = 10,
     double closeIconSize = 25,
-    required BoxFit fit,
+    BoxFit? fit = BoxFit.contain,
   }) {
     showCustomAlert(
       body: BodyAlertImage(
-        imageLocal: imageLocal,
+        isLocal: isLocal ?? false,
         onClose: onClose ?? hideAlert,
         borderRadius: borderRadius,
         imageUrl: imageUrl,
@@ -220,7 +221,7 @@ class AwesomeAlert {
         closeIconSize: closeIconSize,
         fit: fit,
       ),
-      cancelable: true,
+      cancelable: cancelable ?? true,
       paddingScreen: paddingFromPhoneBorder,
       cornerRadius: borderRadius,
     );

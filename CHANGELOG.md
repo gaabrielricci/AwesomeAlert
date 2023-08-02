@@ -1,3 +1,7 @@
+## 0.0.5
+
+* Fix on "awesomeAlert.alertImage()" properties.
+
 ## 0.0.4
 
 * Add AlertImage "awesomeAlert.alertImage()", simple way to you can load image from web or local
