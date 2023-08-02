@@ -11,10 +11,9 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-[//]: # (![Simple alert]&#40;https://riccimobile.com.br/github/flutter/awsomealert/simple.png&#41;)
 
-[//]: # (![Custom alert]&#40;https://riccimobile.com.br/github/flutter/awsomealert/custom.png&#41;)
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" width="300" height="200">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" width="540" height="1200">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" width="540" height="1200">
 
 ## Features
 
