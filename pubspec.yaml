@@ -6,6 +6,9 @@ homepage: https://github.com/gaabrielricci/AwsomeAlert
 environment:
   sdk: '>=3.0.6 <4.0.0'
   flutter: ">=1.17.0"
+platforms:
+  - android
+  - ios
 
 dependencies:
   flutter:
