@@ -11,18 +11,33 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
+## Features
+
+Simply display alerts to the user, or create your own custom alerts.
+
+## Images
+
 <div style="display: flex;">
 <img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" style="flex: 1; padding: 10px;" width="324" height="720">
 <img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Just import the package.
+
+```dart
+import 'package:awesome_alert/awesome_alert.dart';
+```
+
+And init the class whit your valid context
+
+```dart
+
+AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
+```
+
+Enjoy.
 
 ## Usage
 
