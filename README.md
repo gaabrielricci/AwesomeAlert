@@ -12,8 +12,8 @@ and the Flutter guide for
 -->
 
 <div style="display: flex;">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" width="324" height="720">
-<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/simple.png" alt="Simple example" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/awsomealert/custom.png" alt="Custom example" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
 ## Features
 
