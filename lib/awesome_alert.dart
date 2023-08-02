@@ -145,6 +145,7 @@ class AwesomeAlert {
     double borderRadius = 100,
     double paddingFromProgress = 10,
     double sizeProgress = 35,
+    double strokeWidth = 5,
     Function? onComplete,
     bool cancelable = true,
   }) {
@@ -174,6 +175,7 @@ class AwesomeAlert {
                       width: sizeProgress,
                       height: sizeProgress,
                       child: CircularProgressIndicator(
+                        strokeWidth: strokeWidth,
                         color: progressColor ?? Colors.blue,
                       ),
                     ),
