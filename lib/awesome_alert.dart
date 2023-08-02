@@ -1,5 +1,6 @@
 library awesome_alert;
 
+import 'package:awesome_alert/widgets/default_alert_body.dart';
 import 'package:flutter/material.dart';
 
 class AwesomeAlert {
@@ -31,6 +32,7 @@ class AwesomeAlert {
     required String description,
     required String confirmText,
     required Function confirmAction,
+    Function? onComplete,
     Function? cancelAction,
     String? cancelText,
     Color? confirmColor,
@@ -74,66 +76,16 @@ class AwesomeAlert {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(paddingBody),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        title,
-                        style: titleStyle ??
-                            const TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black87,
-                              fontSize: 22,
-                            ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      SelectableText(
-                        description,
-                        style: descriptionStyle ??
-                            const TextStyle(
-                              color: Colors.black54,
-                              fontSize: 16,
-                            ),
-                        textAlign: textAlignMsg ?? TextAlign.center,
-                      ),
-                      const SizedBox(height: 20),
-                      body ?? const SizedBox(),
-                      SizedBox(height: body != null ? 20 : 0),
-                      Row(
-                        children: [
-                          cancelText != null && cancelAction != null
-                              ? Expanded(
-                            child: MaterialButton(
-                              onPressed: () {
-                                cancelAction();
-                              },
-                              shape:
-                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
-                              height: heightButtons,
-                              color: cancelColor ?? Colors.black38,
-                              child: Text(cancelText, style: buttonTextStyle ?? const TextStyle(fontSize: 16)),
-                            ),
-                          )
-                              : const SizedBox(),
-                          Padding(
-                              padding: EdgeInsets.only(left: (cancelText != null && cancelAction != null) ? 10 : 0)),
-                          Expanded(
-                            child: MaterialButton(
-                              onPressed: () {
-                                confirmAction();
-                              },
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
-                              height: heightButtons,
-                              color: confirmColor ?? Colors.blueAccent,
-                              child: Text(confirmText, style: buttonTextStyle ?? const TextStyle(fontSize: 16)),
-                            ),
-                          )
-                        ],
-                      ),
-                    ],
+                  child: DefaultAlertBody(
+                    title: title,
+                    description: description,
+                    paddingScreen: paddingScreen,
+                    heightButtons: heightButtons,
+                    buttonCornerRadius: buttonCornerRadius,
+                    cornerRadius: cornerRadius,
+                    paddingBody: paddingBody,
+                    confirmText: confirmText,
+                    confirmAction: confirmAction,
                   ),
                 ),
               )),
@@ -141,11 +93,13 @@ class AwesomeAlert {
       },
     ).whenComplete(() {
       isOpened = false;
+      if (onComplete != null) onComplete();
     });
   }
 
   void showCustomAleert({
     required Widget? body,
+    Function? onComplete,
     bool cancelable = false,
     double cornerRadius = 12,
     double paddingScreen = 15,
@@ -181,6 +135,7 @@ class AwesomeAlert {
       },
     ).whenComplete(() {
       isOpened = false;
+      if (onComplete != null) onComplete();
     });
   }
 }
