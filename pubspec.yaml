@@ -1,14 +1,13 @@
 name: awesome_alert
 description: A simple way to show alerts
 version: 0.0.1
-homepage: https://github.com/gaabrielricci/AwsomeAlert
+homepage: https://riccimobile.com.br
+repository: https://github.com/gaabrielricci/AwsomeAlert
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
   flutter: ">=1.17.0"
-platforms:
-  - android
-  - ios
+
 
 dependencies:
   flutter:
