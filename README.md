@@ -11,7 +11,8 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-![Simple alert](https://drive.google.com/file/d/1k2g-LaPqFJeV2hI6L41xAJrtCNC_L35q/view?usp=sharing)
+![Simple alert](https://riccimobile.com.br/github/flutter/awsomealert/simple.png)
+![Custom alert](https://riccimobile.com.br/github/flutter/awsomealert/custom.png)
 
 ## Features
 
