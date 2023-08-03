@@ -32,6 +32,8 @@ Enjoy.
 
 This a simple stateless screen with usage example.
 
+[example](https://github.com/gaabrielricci/AwesomeAlert/blob/main/lib/example/awesome_alert_example.dart)
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:awesome_alert/awesome_alert.dart';
