@@ -32,7 +32,7 @@ Enjoy.
 
 This a simple stateless screen with usage example.
 
-[example](https://github.com/gaabrielricci/AwesomeAlert/blob/main/lib/example/awesome_alert_example.dart)
+[example.dart](https://github.com/gaabrielricci/AwesomeAlert/blob/main/lib/example/awesome_alert_example.dart)
 
 ```dart
 import 'package:flutter/material.dart';

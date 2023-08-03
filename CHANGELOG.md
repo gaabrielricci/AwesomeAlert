@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Updated readme, edded example.
+
 ## 0.0.5
 
 * Fix on "awesomeAlert.alertImage()" properties.
