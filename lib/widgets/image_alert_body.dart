@@ -24,6 +24,8 @@ class BodyAlertImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //this is the body of alertImage. here receive an url to download image and display it in an alert.
     return Stack(
       alignment: Alignment.topRight,
       children: [

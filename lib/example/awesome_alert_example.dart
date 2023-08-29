@@ -6,6 +6,8 @@ class AwesomeAlertExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //How to show a simple exemple with a title and description
     _simpleAlert() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.showAlert(
@@ -28,7 +30,7 @@ class AwesomeAlertExample extends StatelessWidget {
         ),
       );
     }
-
+//How to show a simple exemple of an loading alert
     _alertLoading() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.alertLoading(
@@ -40,6 +42,7 @@ class AwesomeAlertExample extends StatelessWidget {
           });
     }
 
+    //How to show an image with alert
     _alertImage() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.alertImage(
@@ -51,6 +54,7 @@ class AwesomeAlertExample extends StatelessWidget {
       );
     }
 
+    //How to create a custom body for an alert
     _customAlert() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.showCustomAlert(
@@ -103,6 +107,7 @@ class AwesomeAlertExample extends StatelessWidget {
       );
     }
 
+    //Example page
     return Scaffold(
       appBar: AppBar(title: const Text("Awesome Alert - Ricci Mobile")),
       body: Center(

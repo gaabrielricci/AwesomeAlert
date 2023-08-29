@@ -57,6 +57,7 @@ class AwesomeAlert {
       barrierDismissible: cancelable,
       context: _context,
       builder: (BuildContext context) {
+        //willpop to prevent the user from closing the alert
         return WillPopScope(
           onWillPop: () async {
             return _onPop(cancelable);
@@ -77,6 +78,7 @@ class AwesomeAlert {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(paddingBody),
+                  //here call body alert and pass the paramters received from user
                   child: BodyDefaultAlert(
                     title: title,
                     description: description,
@@ -149,6 +151,7 @@ class AwesomeAlert {
     });
   }
 
+  //Method to open an alert with CircleProgressIndicator
   void alertLoading({
     Color? backgroundColor,
     Color? progressColor,
@@ -165,10 +168,12 @@ class AwesomeAlert {
         barrierDismissible: cancelable,
         context: _context,
         builder: (BuildContext context) {
+          //will pop to prevent user to close
           return WillPopScope(
             onWillPop: () {
               return Future(() => cancelable);
             },
+            //body of alert
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -200,6 +205,7 @@ class AwesomeAlert {
     });
   }
 
+  //show alert image
   void alertImage({
     required String imageUrl,
     bool? isLocal = false,
@@ -212,6 +218,7 @@ class AwesomeAlert {
     BoxFit? fit = BoxFit.contain,
   }) {
     showCustomAlert(
+      //here call body alert and pass the paramters received from user to show image
       body: BodyAlertImage(
         isLocal: isLocal ?? false,
         onClose: onClose ?? hideAlert,
