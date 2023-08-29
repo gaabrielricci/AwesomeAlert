@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Default text color os alert changed to Colors.white.
+
 ## 0.0.7
 
 * Updated readme, edded example.

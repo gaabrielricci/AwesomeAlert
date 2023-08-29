@@ -83,7 +83,14 @@ class BodyDefaultAlert extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                       height: heightButtons,
                       color: cancelColor ?? Colors.black38,
-                      child: Text(cancelText ?? "", style: buttonTextStyle ?? const TextStyle(fontSize: 16)),
+                      child: Text(
+                        cancelText ?? "",
+                        style: buttonTextStyle ??
+                            const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
+                      ),
                     ),
                   )
                 : const SizedBox(),
@@ -96,7 +103,14 @@ class BodyDefaultAlert extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                 height: heightButtons,
                 color: confirmColor ?? Colors.blueAccent,
-                child: Text(confirmText, style: buttonTextStyle ?? const TextStyle(fontSize: 16)),
+                child: Text(
+                  confirmText,
+                  style: buttonTextStyle ??
+                      const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                ),
               ),
             )
           ],
