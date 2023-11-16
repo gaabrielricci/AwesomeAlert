@@ -1,3 +1,7 @@
+## 0.1.0
+
+* Comments on code.
+
 ## 0.0.9
 
 * Default button color of default alert changed to Theme.colorScheme of project.

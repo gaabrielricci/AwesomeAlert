@@ -5,14 +5,18 @@ import 'package:awesome_alert/widgets/image_alert_body.dart';
 import 'package:flutter/material.dart';
 
 class AwesomeAlert {
+  //constructor
   AwesomeAlert({required BuildContext context}) {
     _context = context;
   }
 
+  //property Buildcontext. responsible for assigning context and allowing the alert to be inflated
   late BuildContext _context;
 
+  //property that's controll the status of alert
   bool isOpened = false;
 
+  //method to hide opened alert
   hideAlert() {
     if (isOpened) {
       isOpened = false;
@@ -20,6 +24,7 @@ class AwesomeAlert {
     }
   }
 
+  //method that triggers the standard alert with title and text and other customization parameters
   void showAlert({
     required String title,
     required String description,
@@ -99,6 +104,7 @@ class AwesomeAlert {
     });
   }
 
+  //method that displays a customized alert, where the body of the alert must be passed, and the customization properties of the alert skeleton.
   void showCustomAlert({
     required Widget? body,
     Function? onComplete,
@@ -192,7 +198,7 @@ class AwesomeAlert {
     });
   }
 
-  //show alert image
+  //show alert to load an internet or asset image
   void alertImage({
     required String imageUrl,
     bool? isLocal = false,
