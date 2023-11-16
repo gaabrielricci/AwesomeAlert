@@ -44,7 +44,6 @@ class BodyDefaultAlert extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     //this is the default body of showAlert.
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -84,7 +83,7 @@ class BodyDefaultAlert extends StatelessWidget {
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                       height: heightButtons,
-                      color: cancelColor ?? Colors.black38,
+                      color: cancelColor ?? Theme.of(context).colorScheme.error,
                       child: Text(
                         cancelText ?? "",
                         style: buttonTextStyle ??
@@ -104,7 +103,7 @@ class BodyDefaultAlert extends StatelessWidget {
                 },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                 height: heightButtons,
-                color: confirmColor ?? Colors.blueAccent,
+                color: confirmColor ?? Theme.of(context).colorScheme.primary,
                 child: Text(
                   confirmText,
                   style: buttonTextStyle ??

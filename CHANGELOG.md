@@ -1,6 +1,11 @@
+## 0.0.9
+
+* Default button color of default alert changed to Theme.colorScheme of project.
+* Update flutter sdk.
+
 ## 0.0.8
 
-* Default text color os alert changed to Colors.white.
+* Default text color of alert changed to Colors.white.
 
 ## 0.0.7
 

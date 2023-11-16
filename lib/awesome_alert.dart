@@ -20,14 +20,6 @@ class AwesomeAlert {
     }
   }
 
-  Future<bool> _onPop(bool cancelable) {
-    if (cancelable) {
-      return Future(() => true);
-    } else {
-      return Future(() => false);
-    }
-  }
-
   void showAlert({
     required String title,
     required String description,
@@ -58,10 +50,8 @@ class AwesomeAlert {
       context: _context,
       builder: (BuildContext context) {
         //willpop to prevent the user from closing the alert
-        return WillPopScope(
-          onWillPop: () async {
-            return _onPop(cancelable);
-          },
+        return PopScope(
+          canPop: cancelable,
           child: Dialog(
               insetPadding: EdgeInsets.all(paddingScreen),
               backgroundColor: Colors.white,
@@ -123,10 +113,8 @@ class AwesomeAlert {
       barrierDismissible: cancelable,
       context: _context,
       builder: (BuildContext context) {
-        return WillPopScope(
-          onWillPop: () {
-            return _onPop(cancelable);
-          },
+        return PopScope(
+          canPop: cancelable,
           child: Dialog(
             insetPadding: EdgeInsets.all(paddingScreen),
             backgroundColor: Colors.white,
@@ -169,10 +157,9 @@ class AwesomeAlert {
         context: _context,
         builder: (BuildContext context) {
           //will pop to prevent user to close
-          return WillPopScope(
-            onWillPop: () {
-              return Future(() => cancelable);
-            },
+          return PopScope(
+            canPop: cancelable,
+            onPopInvoked: (p0) {},
             //body of alert
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
