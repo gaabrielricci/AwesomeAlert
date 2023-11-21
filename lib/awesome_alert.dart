@@ -20,7 +20,7 @@ class AwesomeAlert {
   hideAlert() {
     if (isOpened) {
       isOpened = false;
-      Navigator.pop(_context);
+      Navigator.canPop(_context) ? Navigator.pop(_context) : null;
     }
   }
 

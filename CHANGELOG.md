@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Checking canPop on hide alert.
+
 ## 0.1.0
 
 * Comments on code.
