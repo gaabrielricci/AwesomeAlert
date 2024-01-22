@@ -43,6 +43,7 @@ class AwesomeAlertExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //How to show a simple exemple with a title and description
     _simpleAlert() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.showAlert(
@@ -51,14 +52,14 @@ class AwesomeAlertExample extends StatelessWidget {
         confirmText: "OK",
         confirmAction: () {
           ScaffoldMessenger.of(context).clearSnackBars();
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Pressed")));
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Pressed")));
           awesomeAlert.hideAlert();
         },
         cancelText: "Back",
         cancelAction: () {
           awesomeAlert.hideAlert();
         },
-        buttonTextStyle: TextStyle(
+        cancelButtonTextStyle: const TextStyle(
           fontSize: 14,
           color: Colors.white,
           fontWeight: FontWeight.w400,
@@ -66,6 +67,7 @@ class AwesomeAlertExample extends StatelessWidget {
       );
     }
 
+//How to show a simple exemple of an loading alert
     _alertLoading() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.alertLoading(
@@ -73,10 +75,11 @@ class AwesomeAlertExample extends StatelessWidget {
           paddingFromProgress: 15,
           onComplete: () {
             ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Alert hidded")));
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Alert hidded")));
           });
     }
 
+    //How to show an image with alert
     _alertImage() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.alertImage(
@@ -88,6 +91,7 @@ class AwesomeAlertExample extends StatelessWidget {
       );
     }
 
+    //How to create a custom body for an alert
     _customAlert() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.showCustomAlert(
@@ -104,13 +108,13 @@ class AwesomeAlertExample extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Icon(
                 Icons.check_box,
                 color: Colors.green[700],
                 size: 60,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 "Custom description for a custom alert",
                 style: TextStyle(
@@ -119,9 +123,9 @@ class AwesomeAlertExample extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(height: 20),
-              CircularProgressIndicator(color: Colors.blue),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
+              const CircularProgressIndicator(color: Colors.blue),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Expanded(
@@ -129,7 +133,7 @@ class AwesomeAlertExample extends StatelessWidget {
                       onPressed: () {
                         awesomeAlert.hideAlert();
                       },
-                      child: Text("Hide alert"),
+                      child: const Text("Hide alert"),
                     ),
                   )
                 ],
@@ -140,66 +144,67 @@ class AwesomeAlertExample extends StatelessWidget {
       );
     }
 
+    //Example page
     return Scaffold(
-      appBar: AppBar(title: Text("Awesome Alert - Ricci Mobile")),
+      appBar: AppBar(title: const Text("Awesome Alert - Ricci Mobile")),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             MaterialButton(
               onPressed: _simpleAlert,
-              child: Text(
-                "Show simple Alert",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
               color: Colors.blue,
               height: 40,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
-            ),
-            MaterialButton(
-              onPressed: _customAlert,
-              child: Text(
-                "Show custom Alert",
+              child: const Text(
+                "Show simple Alert",
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
+            ),
+            MaterialButton(
+              onPressed: _customAlert,
               color: Colors.green,
               height: 40,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
-            ),
-            MaterialButton(
-              onPressed: _alertLoading,
-              child: Text(
-                "Show Alert loading",
+              child: const Text(
+                "Show custom Alert",
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
+            ),
+            MaterialButton(
+              onPressed: _alertLoading,
               color: Colors.red,
               height: 40,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
               ),
-            ),
-            MaterialButton(
-              onPressed: _alertImage,
-              child: Text(
-                "Show Alert image",
+              child: const Text(
+                "Show Alert loading",
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
+            ),
+            MaterialButton(
+              onPressed: _alertImage,
               color: Colors.pink,
               height: 40,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
+              ),
+              child: const Text(
+                "Show Alert image",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
@@ -208,6 +213,7 @@ class AwesomeAlertExample extends StatelessWidget {
     );
   }
 }
+
 
 ```
 

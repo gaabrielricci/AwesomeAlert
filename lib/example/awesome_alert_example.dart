@@ -6,7 +6,6 @@ class AwesomeAlertExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     //How to show a simple exemple with a title and description
     _simpleAlert() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
@@ -23,13 +22,14 @@ class AwesomeAlertExample extends StatelessWidget {
         cancelAction: () {
           awesomeAlert.hideAlert();
         },
-        buttonTextStyle: const TextStyle(
+        cancelButtonTextStyle: const TextStyle(
           fontSize: 14,
           color: Colors.white,
           fontWeight: FontWeight.w400,
         ),
       );
     }
+
 //How to show a simple exemple of an loading alert
     _alertLoading() {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);

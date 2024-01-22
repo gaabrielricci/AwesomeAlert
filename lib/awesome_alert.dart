@@ -1,5 +1,6 @@
 library awesome_alert;
 
+import 'package:awesome_alert/awesome_theme.dart';
 import 'package:awesome_alert/widgets/default_alert_body.dart';
 import 'package:awesome_alert/widgets/image_alert_body.dart';
 import 'package:flutter/material.dart';
@@ -33,13 +34,14 @@ class AwesomeAlert {
     Function? onComplete,
     Function? cancelAction,
     String? cancelText,
-    Color? confirmColor,
-    Color? cancelColor,
+    Color? confirmButtonColor,
+    Color? cancelButtonColor,
     TextStyle? titleStyle,
     TextStyle? descriptionStyle,
-    TextStyle? buttonTextStyle,
+    TextStyle? confirmButtonTextStyle,
+    TextStyle? cancelButtonTextStyle,
+    TextAlign? textAlignDescription,
     Widget? body,
-    TextAlign? textAlignMsg,
     bool cancelable = false,
     double cornerRadius = 12,
     double paddingBody = 15,
@@ -84,13 +86,14 @@ class AwesomeAlert {
                     paddingBody: paddingBody,
                     confirmText: confirmText,
                     confirmAction: confirmAction,
-                    buttonTextStyle: buttonTextStyle,
+                    confirmButtonTextStyle: confirmButtonTextStyle,
+                    confirmButtonColor: confirmButtonColor,
+                    cancelButtonColor: cancelButtonColor,
+                    cancelButtonTextStyle: cancelButtonTextStyle,
+                    textAlignDescription: textAlignDescription,
                     cancelAction: cancelAction,
                     cancelText: cancelText,
-                    cancelColor: cancelColor,
-                    confirmColor: confirmColor,
                     descriptionStyle: descriptionStyle,
-                    textAlignMsg: textAlignMsg,
                     titleStyle: titleStyle,
                     body: body,
                   ),
@@ -184,7 +187,7 @@ class AwesomeAlert {
                       height: sizeProgress,
                       child: CircularProgressIndicator(
                         strokeWidth: strokeWidth,
-                        color: progressColor ?? Colors.blue,
+                        color: progressColor ?? AwesomeAlertTheme().progressColor ?? Colors.blue,
                       ),
                     ),
                   ),

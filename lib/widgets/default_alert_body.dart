@@ -1,3 +1,4 @@
+import 'package:awesome_alert/awesome_theme.dart';
 import 'package:flutter/material.dart';
 
 class BodyDefaultAlert extends StatelessWidget {
@@ -5,9 +6,13 @@ class BodyDefaultAlert extends StatelessWidget {
     super.key,
     required this.title,
     required this.description,
+    this.confirmButtonColor,
+    this.cancelButtonColor,
     this.titleStyle,
     this.descriptionStyle,
-    this.textAlignMsg,
+    this.confirmButtonTextStyle,
+    this.cancelButtonTextStyle,
+    this.textAlignDescription,
     this.body,
     this.cancelText,
     this.cancelAction,
@@ -18,18 +23,12 @@ class BodyDefaultAlert extends StatelessWidget {
     required this.paddingBody,
     required this.confirmText,
     required this.confirmAction,
-    this.buttonTextStyle,
-    this.confirmColor,
-    this.cancelColor,
   });
 
   final String confirmText;
   final Function confirmAction;
   final String title;
   final String description;
-  final TextStyle? titleStyle;
-  final TextStyle? descriptionStyle;
-  final TextAlign? textAlignMsg;
   final Widget? body;
   final String? cancelText;
   final Function? cancelAction;
@@ -38,9 +37,13 @@ class BodyDefaultAlert extends StatelessWidget {
   final double paddingScreen;
   final double buttonCornerRadius;
   final double heightButtons;
-  final TextStyle? buttonTextStyle;
-  final Color? confirmColor;
-  final Color? cancelColor;
+  final Color? confirmButtonColor;
+  final Color? cancelButtonColor;
+  final TextStyle? titleStyle;
+  final TextStyle? descriptionStyle;
+  final TextStyle? confirmButtonTextStyle;
+  final TextStyle? cancelButtonTextStyle;
+  final TextAlign? textAlignDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,7 @@ class BodyDefaultAlert extends StatelessWidget {
         Text(
           title,
           style: titleStyle ??
+              AwesomeAlertTheme().titleStyle ??
               const TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black87,
@@ -64,11 +68,12 @@ class BodyDefaultAlert extends StatelessWidget {
         SelectableText(
           description,
           style: descriptionStyle ??
+              AwesomeAlertTheme().descriptionStyle ??
               const TextStyle(
                 color: Colors.black54,
                 fontSize: 16,
               ),
-          textAlign: textAlignMsg ?? TextAlign.center,
+          textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
         ),
         const SizedBox(height: 20),
         body ?? const SizedBox(),
@@ -83,10 +88,13 @@ class BodyDefaultAlert extends StatelessWidget {
                       },
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                       height: heightButtons,
-                      color: cancelColor ?? Theme.of(context).colorScheme.error,
+                      color: cancelButtonColor ??
+                          AwesomeAlertTheme().cancelButtonColor ??
+                          Theme.of(context).colorScheme.error,
                       child: Text(
                         cancelText ?? "",
-                        style: buttonTextStyle ??
+                        style: cancelButtonTextStyle ??
+                            AwesomeAlertTheme().cancelButtonTextStyle ??
                             const TextStyle(
                               fontSize: 16,
                               color: Colors.white,
@@ -103,10 +111,13 @@ class BodyDefaultAlert extends StatelessWidget {
                 },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                 height: heightButtons,
-                color: confirmColor ?? Theme.of(context).colorScheme.primary,
+                color: confirmButtonColor ??
+                    AwesomeAlertTheme().confirmButtonColor ??
+                    Theme.of(context).colorScheme.primary,
                 child: Text(
                   confirmText,
-                  style: buttonTextStyle ??
+                  style: confirmButtonTextStyle ??
+                      AwesomeAlertTheme().confirmButtonTextStyle ??
                       const TextStyle(
                         fontSize: 16,
                         color: Colors.white,

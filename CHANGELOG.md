@@ -1,3 +1,12 @@
+## 0.1.2
+
+* Now it is possible to define a default theme that will be used if it does not contain a definition
+  in the method call. To configure the default theme, just call the
+  AwesomeAlertTheme().confirmButtonColor = Theme.of(context).colorScheme.onPrimary; and define
+  existing properties.
+
+* Changed the names of some properties to make them more intuitive.
+
 ## 0.1.1
 
 * Checking canPop on hide alert.
