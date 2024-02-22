@@ -1,3 +1,7 @@
+## 0.1.3
+
+* Changed the type of image that will be loaded, supported local image, file and web url.
+
 ## 0.1.2
 
 * Now it is possible to define a default theme that will be used if it does not contain a definition

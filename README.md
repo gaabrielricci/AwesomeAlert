@@ -75,7 +75,8 @@ class AwesomeAlertExample extends StatelessWidget {
           paddingFromProgress: 15,
           onComplete: () {
             ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Alert hidded")));
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Alert hidded")));
           });
     }
 
@@ -84,8 +85,8 @@ class AwesomeAlertExample extends StatelessWidget {
       AwesomeAlert awesomeAlert = AwesomeAlert(context: context);
       awesomeAlert.alertImage(
         cancelable: true,
-        isLocal: false,
-        imageUrl: "https://riccimobile.com.br/github/flutter/awsomealert/cat.jpeg",
+        type: ImageType.imageFromWeb,
+        path: "https://riccimobile.com.br/github/flutter/awsomealert/cat.jpeg",
         borderRadius: 15,
         fit: BoxFit.cover,
       );

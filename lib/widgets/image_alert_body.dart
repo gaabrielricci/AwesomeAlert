@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:awesome_alert/image_type.dart';
 import 'package:flutter/material.dart';
 
 class BodyAlertImage extends StatelessWidget {
@@ -6,8 +9,8 @@ class BodyAlertImage extends StatelessWidget {
     required this.onClose,
     this.width,
     required this.borderRadius,
-    required this.imageUrl,
-    required this.isLocal,
+    required this.path,
+    required this.type,
     required this.closeIconSize,
     required this.fit,
     this.loadingColor,
@@ -17,13 +20,38 @@ class BodyAlertImage extends StatelessWidget {
   final double? width;
   final double borderRadius;
   final double closeIconSize;
-  final String imageUrl;
-  final bool isLocal;
+  final String path;
+  final int type;
   final BoxFit? fit;
   final Color? loadingColor;
 
   @override
   Widget build(BuildContext context) {
+    Widget loadImage() {
+      switch (type) {
+        case ImageType.imageFromWeb:
+          return Image.network(path, fit: fit,
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) {
+              return child;
+            }
+            return Center(
+              child: CircularProgressIndicator(
+                color: loadingColor ?? Colors.blue,
+                backgroundColor: Colors.white,
+              ),
+            );
+          });
+
+        case ImageType.assetImage:
+          return Image.asset(path, fit: fit);
+        case ImageType.localFileImage:
+          return Image.file(File(path), fit: fit);
+
+        default:
+          return Text("Selecione um tipo válido");
+      }
+    }
 
     //this is the body of alertImage. here receive an url to download image and display it in an alert.
     return Stack(
@@ -31,23 +59,7 @@ class BodyAlertImage extends StatelessWidget {
       children: [
         SizedBox(
           width: width ?? double.infinity,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(borderRadius),
-            child: !isLocal
-                ? Image.network(imageUrl, fit: fit,
-                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: loadingColor ?? Colors.blue,
-                        backgroundColor: Colors.white,
-                      ),
-                    );
-                  })
-                : Image.asset(imageUrl, fit: fit),
-          ),
+          child: ClipRRect(borderRadius: BorderRadius.circular(borderRadius), child: loadImage()),
         ),
         InkWell(
           onTap: () {

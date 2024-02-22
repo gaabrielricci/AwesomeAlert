@@ -203,8 +203,8 @@ class AwesomeAlert {
 
   //show alert to load an internet or asset image
   void alertImage({
-    required String imageUrl,
-    bool? isLocal = false,
+    required String path,
+    required int type,
     bool? cancelable = true,
     Function? onClose,
     double? width,
@@ -216,10 +216,10 @@ class AwesomeAlert {
     showCustomAlert(
       //here call body alert and pass the paramters received from user to show image
       body: BodyAlertImage(
-        isLocal: isLocal ?? false,
+        type: type,
         onClose: onClose ?? hideAlert,
         borderRadius: borderRadius,
-        imageUrl: imageUrl,
+        path: path,
         width: width,
         closeIconSize: closeIconSize,
         fit: fit,
