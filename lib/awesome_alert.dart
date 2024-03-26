@@ -229,4 +229,106 @@ class AwesomeAlert {
       cornerRadius: borderRadius,
     );
   }
+
+  void alertList(String title, List<String> items,
+      {String? msg,
+      double? cornerRadius = 12,
+      double? paddingBody = 15,
+      double? paddingScreen = 15,
+      double? buttonCornerRadius = 100,
+      double? heightButtons = 40}) {
+    try {
+      hideAlert();
+      isOpened = true;
+      showDialog(
+        context: _context,
+        builder: (BuildContext context) {
+          return Dialog(
+              insetPadding: EdgeInsets.all(paddingScreen ?? 15),
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(cornerRadius ?? 15),
+                ),
+              ),
+              child: SingleChildScrollView(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(cornerRadius ?? 15),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(paddingBody ?? 15),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
+                          child: Text(
+                            title,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Theme.of(context).colorScheme.primary,
+                                fontSize: 22,
+                                height: 1),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        msg != null ? Text(msg) : const SizedBox(),
+                        SizedBox(height: 10),
+                        items.isNotEmpty
+                            ? Padding(
+                                padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
+                                child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true, //            <------  USE SHRINK WRAP
+                                  itemCount: items.length ,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(vertical: 15),
+                                      child: Text("* ${items[index]}"),
+                                    );
+                                  },
+                                ),
+                              )
+                            : const SizedBox(),
+                        SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: MaterialButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(buttonCornerRadius ?? 100)),
+                                height: heightButtons,
+                                color: Theme.of(context).colorScheme.primary,
+                                child: Text(
+                                  "Voltar",
+                                  style: AwesomeAlertTheme().confirmButtonTextStyle ??
+                                      const TextStyle(
+                                        fontSize: 16,
+                                        color: Colors.white,
+                                      ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ));
+        },
+      ).whenComplete(() {
+        isOpened = false;
+      });
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 }
