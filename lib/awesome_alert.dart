@@ -230,13 +230,17 @@ class AwesomeAlert {
     );
   }
 
-  void alertList(String title, List<String> items,
-      {String? msg,
-      double? cornerRadius = 12,
-      double? paddingBody = 15,
-      double? paddingScreen = 15,
-      double? buttonCornerRadius = 100,
-      double? heightButtons = 40}) {
+  void alertList(
+    String title,
+    List<String> items, {
+    String? msg,
+    double? cornerRadius = 12,
+    double? paddingBody = 15,
+    double? paddingScreen = 15,
+    double? buttonCornerRadius = 100,
+    double? heightButtons = 40,
+    double? verticalListSpace = 5,
+  }) {
     try {
       hideAlert();
       isOpened = true;
@@ -275,23 +279,19 @@ class AwesomeAlert {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(height: 10),
                         msg != null ? Text(msg) : const SizedBox(),
-                        SizedBox(height: 10),
+                        SizedBox(height: msg == null ? 0 : 10),
                         items.isNotEmpty
-                            ? Padding(
-                                padding: EdgeInsets.fromLTRB(0, 25, 0, 25),
-                                child: ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true, //            <------  USE SHRINK WRAP
-                                  itemCount: items.length ,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 15),
-                                      child: Text("* ${items[index]}"),
-                                    );
-                                  },
-                                ),
+                            ? ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true, //            <------  USE SHRINK WRAP
+                                itemCount: items.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(vertical: verticalListSpace ?? 5),
+                                    child: Text("* ${items[index]}"),
+                                  );
+                                },
                               )
                             : const SizedBox(),
                         SizedBox(height: 15),
