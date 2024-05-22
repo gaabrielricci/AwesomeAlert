@@ -1,3 +1,7 @@
+## 0.1.4
+
+* Alert list.
+
 ## 0.1.3
 
 * Changed the type of image that will be loaded, supported local image, file and web url.
