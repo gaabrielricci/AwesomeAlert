@@ -240,6 +240,8 @@ class AwesomeAlert {
     double? buttonCornerRadius = 100,
     double? heightButtons = 40,
     double? verticalListSpace = 5,
+    String? titleButton,
+    Function? buttonClick,
   }) {
     try {
       hideAlert();
@@ -300,14 +302,18 @@ class AwesomeAlert {
                             Expanded(
                               child: MaterialButton(
                                 onPressed: () {
-                                  Navigator.pop(context);
+                                  if (buttonClick != null) {
+                                    buttonClick();
+                                  } else {
+                                    Navigator.pop(context);
+                                  }
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(buttonCornerRadius ?? 100)),
                                 height: heightButtons,
                                 color: Theme.of(context).colorScheme.primary,
                                 child: Text(
-                                  "Voltar",
+                                  titleButton ?? "Voltar",
                                   style: AwesomeAlertTheme().confirmButtonTextStyle ??
                                       const TextStyle(
                                         fontSize: 16,

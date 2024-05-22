@@ -1,3 +1,7 @@
+## 0.1.6
+
+* Option to set button function and title in Alert List.
+
 ## 0.1.5
 
 * Option to set space between lines in Alert List.
