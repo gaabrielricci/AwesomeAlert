@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:awesome_alert/awesome_theme.dart';
 import 'package:awesome_alert/image_type.dart';
 import 'package:flutter/material.dart';
 
@@ -30,15 +31,35 @@ class BodyAlertImage extends StatelessWidget {
     Widget loadImage() {
       switch (type) {
         case ImageType.imageFromWeb:
-          return Image.network(path, fit: fit,
-              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+          return Image.network(path, fit: fit, loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
             if (loadingProgress == null) {
               return child;
             }
-            return Center(
-              child: CircularProgressIndicator(
-                color: loadingColor ?? Colors.blue,
-                backgroundColor: Colors.white,
+            return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(40),
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5,
+                            color: loadingColor ?? AwesomeAlertTheme().progressColor ?? Colors.blue,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             );
           });

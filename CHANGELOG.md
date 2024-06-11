@@ -1,3 +1,7 @@
+## 0.1.7
+
+* Fix alertImage loading size.
+
 ## 0.1.6
 
 * Option to set button function and title in Alert List.
