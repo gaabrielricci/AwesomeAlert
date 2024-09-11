@@ -1,56 +1,60 @@
 import 'package:awesome_alert/awesome_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
+/// A widget to display the default body of an alert dialog, including title, description, and action buttons.
 class BodyDefaultAlert extends StatelessWidget {
   const BodyDefaultAlert({
     super.key,
-    required this.title,
-    required this.description,
-    this.confirmButtonColor,
-    this.cancelButtonColor,
-    this.titleStyle,
-    this.descriptionStyle,
-    this.confirmButtonTextStyle,
-    this.cancelButtonTextStyle,
-    this.textAlignDescription,
-    this.body,
-    this.cancelText,
-    this.cancelAction,
-    required this.paddingScreen,
-    required this.heightButtons,
-    required this.buttonCornerRadius,
-    required this.cornerRadius,
-    required this.paddingBody,
-    required this.confirmText,
-    required this.confirmAction,
+    required this.title, // Title of the alert.
+    required this.description, // Description text of the alert.
+    this.confirmButtonColor, // Optional color for the confirm button.
+    this.cancelButtonColor, // Optional color for the cancel button.
+    this.titleStyle, // Optional style for the title text.
+    this.descriptionStyle, // Optional style for the description text.
+    this.confirmButtonTextStyle, // Optional style for the confirm button text.
+    this.cancelButtonTextStyle, // Optional style for the cancel button text.
+    this.textAlignDescription, // Optional text alignment for the description.
+    this.body, // Optional additional body widget.
+    this.cancelText, // Optional text for the cancel button.
+    this.cancelAction, // Optional function to call when the cancel button is pressed.
+    required this.paddingScreen, // Padding around the alert dialog.
+    required this.heightButtons, // Height of the buttons.
+    required this.buttonCornerRadius, // Radius for rounding the corners of the buttons.
+    required this.cornerRadius, // Radius for rounding the corners of the alert dialog.
+    required this.paddingBody, // Padding inside the alert body.
+    required this.confirmText, // Text for the confirm button.
+    required this.confirmAction, // Function to call when the confirm button is pressed.
+    this.isHtml, // Optional flag to indicate if the description should be rendered as HTML.
   });
 
-  final String confirmText;
-  final Function confirmAction;
-  final String title;
-  final String description;
-  final Widget? body;
-  final String? cancelText;
-  final Function? cancelAction;
-  final double cornerRadius;
-  final double paddingBody;
-  final double paddingScreen;
-  final double buttonCornerRadius;
-  final double heightButtons;
-  final Color? confirmButtonColor;
-  final Color? cancelButtonColor;
-  final TextStyle? titleStyle;
-  final TextStyle? descriptionStyle;
-  final TextStyle? confirmButtonTextStyle;
-  final TextStyle? cancelButtonTextStyle;
-  final TextAlign? textAlignDescription;
+  final String confirmText; // Text for the confirm button.
+  final Function confirmAction; // Function to call when the confirm button is pressed.
+  final String title; // Title of the alert.
+  final String description; // Description text of the alert.
+  final Widget? body; // Optional additional body widget.
+  final String? cancelText; // Optional text for the cancel button.
+  final Function? cancelAction; // Optional function to call when the cancel button is pressed.
+  final double cornerRadius; // Radius for rounding the corners of the alert dialog.
+  final double paddingBody; // Padding inside the alert body.
+  final double paddingScreen; // Padding around the alert dialog.
+  final double buttonCornerRadius; // Radius for rounding the corners of the buttons.
+  final double heightButtons; // Height of the buttons.
+  final Color? confirmButtonColor; // Optional color for the confirm button.
+  final Color? cancelButtonColor; // Optional color for the cancel button.
+  final TextStyle? titleStyle; // Optional style for the title text.
+  final TextStyle? descriptionStyle; // Optional style for the description text.
+  final TextStyle? confirmButtonTextStyle; // Optional style for the confirm button text.
+  final TextStyle? cancelButtonTextStyle; // Optional style for the cancel button text.
+  final TextAlign? textAlignDescription; // Optional text alignment for the description.
+  final bool? isHtml; // Optional flag to render the description as HTML.
 
   @override
   Widget build(BuildContext context) {
-    //this is the default body of showAlert.
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        // Always visible title.
         Text(
           title,
           style: titleStyle ??
@@ -62,58 +66,72 @@ class BodyDefaultAlert extends StatelessWidget {
               ),
           textAlign: TextAlign.center,
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        SelectableText(
-          description,
-          style: descriptionStyle ??
-              AwesomeAlertTheme().descriptionStyle ??
-              const TextStyle(
-                color: Colors.black54,
-                fontSize: 16,
-              ),
-          textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
-        ),
         const SizedBox(height: 20),
+
+        // Description with scrolling capability.
+        Flexible(
+          child: SingleChildScrollView(
+            child: isHtml == true
+                ? HtmlWidget(
+              description, // HTML content to be displayed.
+              textStyle: descriptionStyle ??
+                  const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+            )
+                : SelectableText(
+              description,
+              style: descriptionStyle ??
+                  AwesomeAlertTheme().descriptionStyle ??
+                  const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+              textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
+            ),
+          ),
+        ),
+
+        const SizedBox(height: 20),
+
+        // Additional body widget, if provided.
         body ?? const SizedBox(),
         SizedBox(height: body != null ? 20 : 0),
+
+        // Always visible buttons.
         Row(
           children: [
             cancelText != null && cancelAction != null
                 ? Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        if (cancelAction != null) cancelAction!();
-                      },
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
-                      height: heightButtons,
-                      color: cancelButtonColor ??
-                          AwesomeAlertTheme().cancelButtonColor ??
-                          Theme.of(context).colorScheme.error,
-                      child: Text(
-                        cancelText ?? "",
-                        style: cancelButtonTextStyle ??
-                            AwesomeAlertTheme().cancelButtonTextStyle ??
-                            const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
+              child: MaterialButton(
+                onPressed: () {
+                  if (cancelAction != null) cancelAction!();
+                },
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
+                height: heightButtons,
+                color: cancelButtonColor ?? AwesomeAlertTheme().cancelButtonColor ?? Theme.of(context).colorScheme.error,
+                child: Text(
+                  cancelText ?? "",
+                  style: cancelButtonTextStyle ??
+                      AwesomeAlertTheme().cancelButtonTextStyle ??
+                      const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
                       ),
-                    ),
-                  )
+                ),
+              ),
+            )
                 : const SizedBox(),
             Padding(padding: EdgeInsets.only(left: (cancelText != null && cancelAction != null) ? 10 : 0)),
             Expanded(
               child: MaterialButton(
                 onPressed: () {
-                  confirmAction();
+                  confirmAction(); // Call the confirm action when the confirm button is pressed.
                 },
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
                 height: heightButtons,
-                color: confirmButtonColor ??
-                    AwesomeAlertTheme().confirmButtonColor ??
-                    Theme.of(context).colorScheme.primary,
+                color: confirmButtonColor ?? AwesomeAlertTheme().confirmButtonColor ?? Theme.of(context).colorScheme.primary,
                 child: Text(
                   confirmText,
                   style: confirmButtonTextStyle ??

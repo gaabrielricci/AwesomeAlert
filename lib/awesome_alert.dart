@@ -48,6 +48,7 @@ class AwesomeAlert {
     double paddingScreen = 15,
     double buttonCornerRadius = 100,
     double heightButtons = 40,
+    bool? isHtml = false,
   }) {
     hideAlert();
     isOpened = true;
@@ -96,6 +97,7 @@ class AwesomeAlert {
                     descriptionStyle: descriptionStyle,
                     titleStyle: titleStyle,
                     body: body,
+                    isHtml: isHtml,
                   ),
                 ),
               )),
@@ -168,8 +170,7 @@ class AwesomeAlert {
           //will pop to prevent user to close
           return PopScope(
             canPop: cancelable,
-            onPopInvoked: (p0) {},
-            //body of alert
+            onPopInvokedWithResult: (didPop, result) {},
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -229,7 +230,7 @@ class AwesomeAlert {
       cornerRadius: borderRadius,
     );
   }
-
+  /// Method to show an alert with a list of items.
   void alertList(
     String title,
     List<String> items, {
@@ -274,10 +275,7 @@ class AwesomeAlert {
                           child: Text(
                             title,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Theme.of(context).colorScheme.primary,
-                                fontSize: 22,
-                                height: 1),
+                                fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.primary, fontSize: 22, height: 1),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -308,8 +306,7 @@ class AwesomeAlert {
                                     Navigator.pop(context);
                                   }
                                 },
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(buttonCornerRadius ?? 100)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius ?? 100)),
                                 height: heightButtons,
                                 color: Theme.of(context).colorScheme.primary,
                                 child: Text(

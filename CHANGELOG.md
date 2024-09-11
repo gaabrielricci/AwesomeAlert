@@ -1,3 +1,8 @@
+## 0.1.8
+
+* showAlert isHtml property added for descripton html.
+* Added comments in the code.
+
 ## 0.1.7
 
 * Fix alertImage loading size.

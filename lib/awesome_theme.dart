@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
+/// Singleton class to manage the theme for AwesomeAlert.
 class AwesomeAlertTheme {
-  static final AwesomeAlertTheme _instance = AwesomeAlertTheme.internal();
+  // Private constructor for internal use only.
+  AwesomeAlertTheme._internal();
 
+  // Singleton instance.
+  static final AwesomeAlertTheme _instance = AwesomeAlertTheme._internal();
+
+  // Factory constructor to return the singleton instance.
   factory AwesomeAlertTheme() => _instance;
 
-  AwesomeAlertTheme.internal();
-
+  // Colors for various UI elements in the alert.
   Color? progressColor;
   Color? confirmButtonColor;
   Color? cancelButtonColor;
@@ -14,5 +19,7 @@ class AwesomeAlertTheme {
   TextStyle? descriptionStyle;
   TextStyle? confirmButtonTextStyle;
   TextStyle? cancelButtonTextStyle;
+
+  // Text alignment for the description.
   TextAlign? textAlignDescription;
 }
