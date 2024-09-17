@@ -49,6 +49,7 @@ class AwesomeAlert {
     double buttonCornerRadius = 100,
     double heightButtons = 40,
     bool? isHtml = false,
+    bool? closeButton = false,
   }) {
     hideAlert();
     isOpened = true;
@@ -61,7 +62,7 @@ class AwesomeAlert {
         return PopScope(
           canPop: cancelable,
           child: Dialog(
-              insetPadding: EdgeInsets.all(paddingScreen),
+              insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
@@ -78,6 +79,7 @@ class AwesomeAlert {
                   padding: EdgeInsets.all(paddingBody),
                   //here call body alert and pass the paramters received from user
                   child: BodyDefaultAlert(
+                    close: closeButton == true ? hideAlert() : null,
                     title: title,
                     description: description,
                     paddingScreen: paddingScreen,
@@ -127,7 +129,7 @@ class AwesomeAlert {
         return PopScope(
           canPop: cancelable,
           child: Dialog(
-            insetPadding: EdgeInsets.all(paddingScreen),
+            insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
@@ -159,7 +161,7 @@ class AwesomeAlert {
     double sizeProgress = 35,
     double strokeWidth = 5,
     Function? onComplete,
-    bool cancelable = true,
+    bool cancelable = false,
   }) {
     hideAlert();
     isOpened = true;
@@ -230,6 +232,7 @@ class AwesomeAlert {
       cornerRadius: borderRadius,
     );
   }
+
   /// Method to show an alert with a list of items.
   void alertList(
     String title,
@@ -251,7 +254,7 @@ class AwesomeAlert {
         context: _context,
         builder: (BuildContext context) {
           return Dialog(
-              insetPadding: EdgeInsets.all(paddingScreen ?? 15),
+              insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen ?? 15),
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(
@@ -306,8 +309,9 @@ class AwesomeAlert {
                                     Navigator.pop(context);
                                   }
                                 },
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius ?? 100)),
-                                height: heightButtons,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius ?? 100)),
+                                height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
                                 color: Theme.of(context).colorScheme.primary,
                                 child: Text(
                                   titleButton ?? "Voltar",

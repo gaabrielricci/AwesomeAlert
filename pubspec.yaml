@@ -1,6 +1,6 @@
 name: awesome_alert
 description: This package allows you to create your alerts in a customized and simple way. There are ready-made templates such as loading or image loading, but you can also create your own custom alert.
-version: 0.1.8
+version: 1.0.0
 homepage: https://riccimobile.com.br
 repository: https://github.com/gaabrielricci/AwesomeAlert
 

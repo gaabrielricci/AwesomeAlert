@@ -1,3 +1,8 @@
+## 1.0.0
+
+* New options on singleton AwesomeAlertTheme.
+* AwesomeAlert(context:context).showAlert([...]) added option |bool? showCloseButton|
+
 ## 0.1.8
 
 * showAlert isHtml property added for descripton html.

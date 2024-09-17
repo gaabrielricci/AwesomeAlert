@@ -19,6 +19,9 @@ class AwesomeAlertTheme {
   TextStyle? descriptionStyle;
   TextStyle? confirmButtonTextStyle;
   TextStyle? cancelButtonTextStyle;
+  double? buttonHeight;
+  double? buttonRadius;
+  double? defaultPaddingAlert;
 
   // Text alignment for the description.
   TextAlign? textAlignDescription;

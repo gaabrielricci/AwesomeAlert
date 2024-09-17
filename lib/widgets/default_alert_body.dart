@@ -26,6 +26,7 @@ class BodyDefaultAlert extends StatelessWidget {
     required this.confirmText, // Text for the confirm button.
     required this.confirmAction, // Function to call when the confirm button is pressed.
     this.isHtml, // Optional flag to indicate if the description should be rendered as HTML.
+    this.close, //optional close function
   });
 
   final String confirmText; // Text for the confirm button.
@@ -48,6 +49,7 @@ class BodyDefaultAlert extends StatelessWidget {
   final TextStyle? cancelButtonTextStyle; // Optional style for the cancel button text.
   final TextAlign? textAlignDescription; // Optional text alignment for the description.
   final bool? isHtml; // Optional flag to render the description as HTML.
+  final Function? close; // close alert
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +57,40 @@ class BodyDefaultAlert extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         // Always visible title.
-        Text(
-          title,
-          style: titleStyle ??
-              AwesomeAlertTheme().titleStyle ??
-              const TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.black87,
-                fontSize: 22,
+        Row(
+          children: [
+            SizedBox(width: 25),
+            Expanded(
+              child: Text(
+                title,
+                style: titleStyle ??
+                    AwesomeAlertTheme().titleStyle ??
+                    const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                      fontSize: 22,
+                    ),
+                textAlign: TextAlign.center,
               ),
-          textAlign: TextAlign.center,
+            ),
+            close != null
+                ? InkWell(
+                    borderRadius: BorderRadius.circular(100),
+                    onTap: () {
+                      if (close != null) {
+                        close!();
+                      }
+                    },
+                    child: Ink(
+                      color: Colors.white,
+                      child: Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    ),
+                  )
+                : SizedBox()
+          ],
         ),
         const SizedBox(height: 20),
 
@@ -73,23 +99,23 @@ class BodyDefaultAlert extends StatelessWidget {
           child: SingleChildScrollView(
             child: isHtml == true
                 ? HtmlWidget(
-              description, // HTML content to be displayed.
-              textStyle: descriptionStyle ??
-                  const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-            )
+                    description, // HTML content to be displayed.
+                    textStyle: descriptionStyle ??
+                        const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                        ),
+                  )
                 : SelectableText(
-              description,
-              style: descriptionStyle ??
-                  AwesomeAlertTheme().descriptionStyle ??
-                  const TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
+                    description,
+                    style: descriptionStyle ??
+                        AwesomeAlertTheme().descriptionStyle ??
+                        const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                        ),
+                    textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
                   ),
-              textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
-            ),
           ),
         ),
 
@@ -104,24 +130,25 @@ class BodyDefaultAlert extends StatelessWidget {
           children: [
             cancelText != null && cancelAction != null
                 ? Expanded(
-              child: MaterialButton(
-                onPressed: () {
-                  if (cancelAction != null) cancelAction!();
-                },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
-                height: heightButtons,
-                color: cancelButtonColor ?? AwesomeAlertTheme().cancelButtonColor ?? Theme.of(context).colorScheme.error,
-                child: Text(
-                  cancelText ?? "",
-                  style: cancelButtonTextStyle ??
-                      AwesomeAlertTheme().cancelButtonTextStyle ??
-                      const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
+                    child: MaterialButton(
+                      onPressed: () {
+                        if (cancelAction != null) cancelAction!();
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius)),
+                      height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
+                      color: cancelButtonColor ?? AwesomeAlertTheme().cancelButtonColor ?? Theme.of(context).colorScheme.error,
+                      child: Text(
+                        cancelText ?? "",
+                        style: cancelButtonTextStyle ??
+                            AwesomeAlertTheme().cancelButtonTextStyle ??
+                            const TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
+                            ),
                       ),
-                ),
-              ),
-            )
+                    ),
+                  )
                 : const SizedBox(),
             Padding(padding: EdgeInsets.only(left: (cancelText != null && cancelAction != null) ? 10 : 0)),
             Expanded(
@@ -129,8 +156,8 @@ class BodyDefaultAlert extends StatelessWidget {
                 onPressed: () {
                   confirmAction(); // Call the confirm action when the confirm button is pressed.
                 },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(buttonCornerRadius)),
-                height: heightButtons,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius)),
+                height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
                 color: confirmButtonColor ?? AwesomeAlertTheme().confirmButtonColor ?? Theme.of(context).colorScheme.primary,
                 child: Text(
                   confirmText,
