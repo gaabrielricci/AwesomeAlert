@@ -22,6 +22,7 @@ class AwesomeAlertTheme {
   double? buttonHeight;
   double? buttonRadius;
   double? defaultPaddingAlert;
+  double? internalBodyPadding;
 
   // Text alignment for the description.
   TextAlign? textAlignDescription;

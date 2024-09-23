@@ -1,3 +1,7 @@
+## 1.0.1
+
+* internalBodyPadding on singleton AwesomeAlertTheme.
+
 ## 1.0.0
 
 * New options on singleton AwesomeAlertTheme.

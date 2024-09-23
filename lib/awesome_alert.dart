@@ -76,7 +76,7 @@ class AwesomeAlert {
                   ),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(paddingBody),
+                  padding: EdgeInsets.all(AwesomeAlertTheme().internalBodyPadding ?? paddingBody),
                   //here call body alert and pass the paramters received from user
                   child: BodyDefaultAlert(
                     close: closeButton == true ? hideAlert() : null,
