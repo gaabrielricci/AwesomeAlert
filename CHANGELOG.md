@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Updated HTML extension to be compat with webview_flutter: ^4.10.0.
+
 ## 1.0.1
 
 * internalBodyPadding on singleton AwesomeAlertTheme.
