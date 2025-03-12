@@ -50,6 +50,7 @@ class AwesomeAlert {
     double heightButtons = 40,
     bool? isHtml = false,
     bool? closeButton = false,
+    double? fixedSize,
   }) {
     hideAlert();
     isOpened = true;
@@ -58,26 +59,23 @@ class AwesomeAlert {
       barrierDismissible: cancelable,
       context: _context,
       builder: (BuildContext context) {
-        //willpop to prevent the user from closing the alert
         return PopScope(
           canPop: cancelable,
           child: Dialog(
-              insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(cornerRadius),
-                ),
-              ),
+            insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+            ),
+            child: ConstrainedBox(
+              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize!=null)? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize??700) : BoxConstraints(),
+
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(cornerRadius),
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(AwesomeAlertTheme().internalBodyPadding ?? paddingBody),
-                  //here call body alert and pass the paramters received from user
                   child: BodyDefaultAlert(
                     close: closeButton == true ? hideAlert() : null,
                     title: title,
@@ -102,7 +100,9 @@ class AwesomeAlert {
                     isHtml: isHtml,
                   ),
                 ),
-              )),
+              ),
+            ),
+          ),
         );
       },
     ).whenComplete(() {
@@ -118,6 +118,7 @@ class AwesomeAlert {
     bool cancelable = false,
     double cornerRadius = 12,
     double paddingScreen = 15,
+    double? fixedSize,
   }) {
     hideAlert();
     isOpened = true;
@@ -132,17 +133,18 @@ class AwesomeAlert {
             insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(cornerRadius),
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+            ),
+            child: ConstrainedBox(
+              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize!=null)? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize??700) : BoxConstraints(),
+
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+                ),
+                child: body,
               ),
             ),
-            child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(cornerRadius),
-                  ),
-                ),
-                child: body),
           ),
         );
       },
@@ -215,9 +217,9 @@ class AwesomeAlert {
     double paddingFromPhoneBorder = 10,
     double closeIconSize = 25,
     BoxFit? fit = BoxFit.contain,
+    double? fixedSize,
   }) {
     showCustomAlert(
-      //here call body alert and pass the paramters received from user to show image
       body: BodyAlertImage(
         type: type,
         onClose: onClose ?? hideAlert,
@@ -230,6 +232,7 @@ class AwesomeAlert {
       cancelable: cancelable ?? true,
       paddingScreen: paddingFromPhoneBorder,
       cornerRadius: borderRadius,
+      fixedSize: fixedSize, // Passando o fixedSize para showCustomAlert
     );
   }
 
@@ -246,6 +249,7 @@ class AwesomeAlert {
     double? verticalListSpace = 5,
     String? titleButton,
     Function? buttonClick,
+    double? fixedSize,
   }) {
     try {
       hideAlert();
@@ -254,19 +258,17 @@ class AwesomeAlert {
         context: _context,
         builder: (BuildContext context) {
           return Dialog(
-              insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen ?? 15),
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(cornerRadius ?? 15),
-                ),
-              ),
+            insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen ?? 15),
+            backgroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? 15)),
+            ),
+            child: ConstrainedBox(
+              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize!=null)? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize??700) : BoxConstraints(),
               child: SingleChildScrollView(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(cornerRadius ?? 15),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? 15)),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(paddingBody ?? 15),
@@ -278,7 +280,11 @@ class AwesomeAlert {
                           child: Text(
                             title,
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, color: Theme.of(context).colorScheme.primary, fontSize: 22, height: 1),
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context).colorScheme.primary,
+                              fontSize: 22,
+                              height: 1,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -287,7 +293,7 @@ class AwesomeAlert {
                         items.isNotEmpty
                             ? ListView.builder(
                                 physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true, //            <------  USE SHRINK WRAP
+                                shrinkWrap: true, // Permite que a lista se ajuste ao conteúdo
                                 itemCount: items.length,
                                 itemBuilder: (context, index) {
                                   return Padding(
@@ -310,7 +316,8 @@ class AwesomeAlert {
                                   }
                                 },
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius ?? 100)),
+                                  borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius ?? 100),
+                                ),
                                 height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
                                 color: Theme.of(context).colorScheme.primary,
                                 child: Text(
@@ -329,7 +336,9 @@ class AwesomeAlert {
                     ),
                   ),
                 ),
-              ));
+              ),
+            ),
+          );
         },
       ).whenComplete(() {
         isOpened = false;

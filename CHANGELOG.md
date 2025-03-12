@@ -1,3 +1,8 @@
+## 1.1.0
+
+* added the fizedSize property to alerts, allowing you to set a fixed width, ideal for web use.
+  AwesomeAlertTheme().fixedSize = 600; or showAlert(fixedSize:600,...)
+
 ## 1.0.2
 
 * Updated HTML extension to be compat with webview_flutter: ^4.10.0.
