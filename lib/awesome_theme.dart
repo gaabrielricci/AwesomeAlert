@@ -24,6 +24,7 @@ class AwesomeAlertTheme {
   double? defaultPaddingAlert;
   double? internalBodyPadding;
   double? fixedSize;
+  double borderRadius=12;
 
   // Text alignment for the description.
   TextAlign? textAlignDescription;

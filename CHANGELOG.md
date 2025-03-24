@@ -1,3 +1,7 @@
+## 1.1.1
+
+* added the AwesomeAlertTheme().borderRadius to default theme
+
 ## 1.1.0
 
 * added the fizedSize property to alerts, allowing you to set a fixed width, ideal for web use.

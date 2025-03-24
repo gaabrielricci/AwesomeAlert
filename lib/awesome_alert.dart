@@ -43,7 +43,7 @@ class AwesomeAlert {
     TextAlign? textAlignDescription,
     Widget? body,
     bool cancelable = false,
-    double cornerRadius = 12,
+    double? cornerRadius,
     double paddingBody = 15,
     double paddingScreen = 15,
     double buttonCornerRadius = 100,
@@ -65,14 +65,15 @@ class AwesomeAlert {
             insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? AwesomeAlertTheme().borderRadius)),
             ),
             child: ConstrainedBox(
-              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize!=null)? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize??700) : BoxConstraints(),
-
+              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize != null)
+                  ? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize ?? 700)
+                  : BoxConstraints(),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+                  borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? AwesomeAlertTheme().borderRadius)),
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(AwesomeAlertTheme().internalBodyPadding ?? paddingBody),
@@ -83,7 +84,7 @@ class AwesomeAlert {
                     paddingScreen: paddingScreen,
                     heightButtons: heightButtons,
                     buttonCornerRadius: buttonCornerRadius,
-                    cornerRadius: cornerRadius,
+                    cornerRadius: cornerRadius ?? AwesomeAlertTheme().borderRadius,
                     paddingBody: paddingBody,
                     confirmText: confirmText,
                     confirmAction: confirmAction,
@@ -116,7 +117,7 @@ class AwesomeAlert {
     required Widget? body,
     Function? onComplete,
     bool cancelable = false,
-    double cornerRadius = 12,
+    double? cornerRadius,
     double paddingScreen = 15,
     double? fixedSize,
   }) {
@@ -133,14 +134,15 @@ class AwesomeAlert {
             insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen),
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? AwesomeAlertTheme().borderRadius)),
             ),
             child: ConstrainedBox(
-              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize!=null)? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize??700) : BoxConstraints(),
-
+              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize != null)
+                  ? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize ?? 700)
+                  : BoxConstraints(),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(cornerRadius)),
+                  borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? AwesomeAlertTheme().borderRadius)),
                 ),
                 child: body,
               ),
@@ -213,7 +215,7 @@ class AwesomeAlert {
     bool? cancelable = true,
     Function? onClose,
     double? width,
-    double borderRadius = 10,
+    double? borderRadius,
     double paddingFromPhoneBorder = 10,
     double closeIconSize = 25,
     BoxFit? fit = BoxFit.contain,
@@ -223,7 +225,7 @@ class AwesomeAlert {
       body: BodyAlertImage(
         type: type,
         onClose: onClose ?? hideAlert,
-        borderRadius: borderRadius,
+        borderRadius: borderRadius ?? AwesomeAlertTheme().borderRadius,
         path: path,
         width: width,
         closeIconSize: closeIconSize,
@@ -231,7 +233,7 @@ class AwesomeAlert {
       ),
       cancelable: cancelable ?? true,
       paddingScreen: paddingFromPhoneBorder,
-      cornerRadius: borderRadius,
+      cornerRadius: borderRadius ?? AwesomeAlertTheme().borderRadius,
       fixedSize: fixedSize, // Passando o fixedSize para showCustomAlert
     );
   }
@@ -241,7 +243,7 @@ class AwesomeAlert {
     String title,
     List<String> items, {
     String? msg,
-    double? cornerRadius = 12,
+    double? cornerRadius,
     double? paddingBody = 15,
     double? paddingScreen = 15,
     double? buttonCornerRadius = 100,
@@ -261,14 +263,16 @@ class AwesomeAlert {
             insetPadding: EdgeInsets.all(AwesomeAlertTheme().defaultPaddingAlert ?? paddingScreen ?? 15),
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? 15)),
+              borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? AwesomeAlertTheme().borderRadius)),
             ),
             child: ConstrainedBox(
-              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize!=null)? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize??700) : BoxConstraints(),
+              constraints: (fixedSize != null || AwesomeAlertTheme().fixedSize != null)
+                  ? BoxConstraints(maxWidth: fixedSize ?? AwesomeAlertTheme().fixedSize ?? 700)
+                  : BoxConstraints(),
               child: SingleChildScrollView(
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? 15)),
+                    borderRadius: BorderRadius.all(Radius.circular(cornerRadius ?? AwesomeAlertTheme().borderRadius)),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(paddingBody ?? 15),
