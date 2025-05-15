@@ -18,11 +18,9 @@ class BodyDefaultAlert extends StatelessWidget {
     this.body, // Optional additional body widget.
     this.cancelText, // Optional text for the cancel button.
     this.cancelAction, // Optional function to call when the cancel button is pressed.
-    required this.paddingScreen, // Padding around the alert dialog.
     required this.heightButtons, // Height of the buttons.
     required this.buttonCornerRadius, // Radius for rounding the corners of the buttons.
     required this.cornerRadius, // Radius for rounding the corners of the alert dialog.
-    required this.paddingBody, // Padding inside the alert body.
     required this.confirmText, // Text for the confirm button.
     required this.confirmAction, // Function to call when the confirm button is pressed.
     this.isHtml, // Optional flag to indicate if the description should be rendered as HTML.
@@ -37,8 +35,6 @@ class BodyDefaultAlert extends StatelessWidget {
   final String? cancelText; // Optional text for the cancel button.
   final Function? cancelAction; // Optional function to call when the cancel button is pressed.
   final double cornerRadius; // Radius for rounding the corners of the alert dialog.
-  final double paddingBody; // Padding inside the alert body.
-  final double paddingScreen; // Padding around the alert dialog.
   final double buttonCornerRadius; // Radius for rounding the corners of the buttons.
   final double heightButtons; // Height of the buttons.
   final Color? confirmButtonColor; // Optional color for the confirm button.
@@ -59,7 +55,7 @@ class BodyDefaultAlert extends StatelessWidget {
         // Always visible title.
         Row(
           children: [
-            SizedBox(width: 25),
+            if (close != null) SizedBox(width: 25),
             Expanded(
               child: Text(
                 title,
