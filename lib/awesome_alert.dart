@@ -78,7 +78,7 @@ class AwesomeAlert {
                 child: Padding(
                   padding: EdgeInsets.all(AwesomeAlertTheme().internalBodyPadding ?? paddingBody),
                   child: BodyDefaultAlert(
-                    close: closeButton == true ? hideAlert() : null,
+                    close: closeButton == true ? hideAlert : null,
                     title: title,
                     description: description,
                     heightButtons: heightButtons,

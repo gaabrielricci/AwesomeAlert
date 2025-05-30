@@ -1,3 +1,8 @@
+## 1.1.3
+
+* Fix closebutton parameter in showAlert method.
+
+
 ## 1.1.2
 
 * Add conditional spacing for close button in alert title
