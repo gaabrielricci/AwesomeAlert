@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:awesome_alert/awesome_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -102,16 +104,27 @@ class BodyDefaultAlert extends StatelessWidget {
                           fontSize: 16,
                         ),
                   )
-                : SelectableText(
-                    description,
-                    style: descriptionStyle ??
-                        AwesomeAlertTheme().descriptionStyle ??
-                        const TextStyle(
-                          color: Colors.black54,
-                          fontSize: 16,
-                        ),
-                    textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
-                  ),
+                : Platform.isAndroid
+                    ? SelectableText(
+                        description,
+                        style: descriptionStyle ??
+                            AwesomeAlertTheme().descriptionStyle ??
+                            const TextStyle(
+                              color: Colors.black54,
+                              fontSize: 16,
+                            ),
+                        textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
+                      )
+                    : Text(
+                        description,
+                        style: descriptionStyle ??
+                            AwesomeAlertTheme().descriptionStyle ??
+                            const TextStyle(
+                              color: Colors.black54,
+                              fontSize: 16,
+                            ),
+                        textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
+                      ),
           ),
         ),
 

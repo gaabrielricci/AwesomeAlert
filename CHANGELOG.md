@@ -1,3 +1,7 @@
+## 1.1.4
+
+* Removed selectableText in default modal for iOS to avoid exceptions with context.
+
 ## 1.1.3
 
 * Fix closebutton parameter in showAlert method.
