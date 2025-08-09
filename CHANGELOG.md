@@ -1,3 +1,7 @@
+## 1.1.5
+
+* Update Lib HTML core.
+
 ## 1.1.4
 
 * Removed selectableText in default modal for iOS to avoid exceptions with context.
