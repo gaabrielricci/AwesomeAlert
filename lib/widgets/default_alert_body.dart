@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:awesome_alert/awesome_theme.dart';
+import 'package:awesome_alert/widgets/platform_text/mobile/text_mobile.dart';
+import 'package:awesome_alert/widgets/platform_text/web/text_web.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:flutter/foundation.dart';
 
 /// A widget to display the default body of an alert dialog, including title, description, and action buttons.
 class BodyDefaultAlert extends StatelessWidget {
@@ -104,26 +107,16 @@ class BodyDefaultAlert extends StatelessWidget {
                           fontSize: 16,
                         ),
                   )
-                : Platform.isAndroid
-                    ? SelectableText(
-                        description,
-                        style: descriptionStyle ??
-                            AwesomeAlertTheme().descriptionStyle ??
-                            const TextStyle(
-                              color: Colors.black54,
-                              fontSize: 16,
-                            ),
-                        textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
+                : kIsWeb
+                    ? TextWeb(
+                        description: description,
+                        textAlignDescription: textAlignDescription,
+                        descriptionStyle: descriptionStyle,
                       )
-                    : Text(
-                        description,
-                        style: descriptionStyle ??
-                            AwesomeAlertTheme().descriptionStyle ??
-                            const TextStyle(
-                              color: Colors.black54,
-                              fontSize: 16,
-                            ),
-                        textAlign: textAlignDescription ?? AwesomeAlertTheme().textAlignDescription ?? TextAlign.center,
+                    : TextMobile(
+                        description: description,
+                        textAlignDescription: textAlignDescription,
+                        descriptionStyle: descriptionStyle,
                       ),
           ),
         ),

@@ -1,3 +1,8 @@
+## 1.1.6
+
+* Fix Platform Check for Web.
+
+
 ## 1.1.5
 
 * Update Lib HTML core.
