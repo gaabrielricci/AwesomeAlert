@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:awesome_alert/awesome_theme.dart';
 import 'package:flutter/material.dart';
 

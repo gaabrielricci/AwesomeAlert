@@ -1,11 +1,9 @@
-import 'dart:io';
-
 import 'package:awesome_alert/awesome_theme.dart';
 import 'package:awesome_alert/widgets/platform_text/mobile/text_mobile.dart';
 import 'package:awesome_alert/widgets/platform_text/web/text_web.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:flutter/foundation.dart';
 
 /// A widget to display the default body of an alert dialog, including title, description, and action buttons.
 class BodyDefaultAlert extends StatelessWidget {
