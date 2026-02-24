@@ -1,3 +1,14 @@
+## 1.2.0
+
+* **API Modernization**: Introduced new static methods for a cleaner developer experience: `AwesomeAlert.show`, `showLoading`, `showImage`, `showList`, and `showCustom`.
+* **Standardized Parameter Names**: Renamed parameters to follow Flutter conventions (e.g., `insetPadding`, `contentPadding`, `showCloseButton`, `onDismiss`).
+* **New Feature**: Added `backgroundColor` support to `showCustom`.
+* **Backward Compatibility**: Marked existing instance-based methods as `@deprecated` with clear migration paths.
+* **Documentation**: Added comprehensive Dartdoc comments to all public members.
+* **Structure**: Moved example project to the root `example/` folder.
+* **Typing**: Improved type safety by using `VoidCallback` for alert actions.
+* **Quality**: Revamped `README.md` and optimized `pubspec.yaml` metadata.
+
 ## 1.1.6
 
 * Fix Platform Check for Web.

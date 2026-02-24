@@ -9,56 +9,56 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 class BodyDefaultAlert extends StatelessWidget {
   const BodyDefaultAlert({
     super.key,
-    required this.title, // Title of the alert.
-    required this.description, // Description text of the alert.
-    this.confirmButtonColor, // Optional color for the confirm button.
-    this.cancelButtonColor, // Optional color for the cancel button.
-    this.titleStyle, // Optional style for the title text.
-    this.descriptionStyle, // Optional style for the description text.
-    this.confirmButtonTextStyle, // Optional style for the confirm button text.
-    this.cancelButtonTextStyle, // Optional style for the cancel button text.
-    this.textAlignDescription, // Optional text alignment for the description.
-    this.body, // Optional additional body widget.
-    this.cancelText, // Optional text for the cancel button.
-    this.cancelAction, // Optional function to call when the cancel button is pressed.
-    required this.heightButtons, // Height of the buttons.
-    required this.buttonCornerRadius, // Radius for rounding the corners of the buttons.
-    required this.cornerRadius, // Radius for rounding the corners of the alert dialog.
-    required this.confirmText, // Text for the confirm button.
-    required this.confirmAction, // Function to call when the confirm button is pressed.
-    this.isHtml, // Optional flag to indicate if the description should be rendered as HTML.
-    this.close, //optional close function
+    required this.title,
+    required this.description,
+    this.confirmButtonColor,
+    this.cancelButtonColor,
+    this.titleStyle,
+    this.descriptionStyle,
+    this.confirmButtonTextStyle,
+    this.cancelButtonTextStyle,
+    this.textAlignDescription,
+    this.body,
+    this.cancelText,
+    this.cancelAction,
+    required this.heightButtons,
+    required this.buttonCornerRadius,
+    required this.cornerRadius,
+    required this.confirmText,
+    required this.confirmAction,
+    this.isHtml = false,
+    this.close,
   });
 
-  final String confirmText; // Text for the confirm button.
-  final Function confirmAction; // Function to call when the confirm button is pressed.
-  final String title; // Title of the alert.
-  final String description; // Description text of the alert.
-  final Widget? body; // Optional additional body widget.
-  final String? cancelText; // Optional text for the cancel button.
-  final Function? cancelAction; // Optional function to call when the cancel button is pressed.
-  final double cornerRadius; // Radius for rounding the corners of the alert dialog.
-  final double buttonCornerRadius; // Radius for rounding the corners of the buttons.
-  final double heightButtons; // Height of the buttons.
-  final Color? confirmButtonColor; // Optional color for the confirm button.
-  final Color? cancelButtonColor; // Optional color for the cancel button.
-  final TextStyle? titleStyle; // Optional style for the title text.
-  final TextStyle? descriptionStyle; // Optional style for the description text.
-  final TextStyle? confirmButtonTextStyle; // Optional style for the confirm button text.
-  final TextStyle? cancelButtonTextStyle; // Optional style for the cancel button text.
-  final TextAlign? textAlignDescription; // Optional text alignment for the description.
-  final bool? isHtml; // Optional flag to render the description as HTML.
-  final Function? close; // close alert
+  final String confirmText;
+  final VoidCallback confirmAction;
+  final String title;
+  final String description;
+  final Widget? body;
+  final String? cancelText;
+  final VoidCallback? cancelAction;
+  final double cornerRadius;
+  final double buttonCornerRadius;
+  final double heightButtons;
+  final Color? confirmButtonColor;
+  final Color? cancelButtonColor;
+  final TextStyle? titleStyle;
+  final TextStyle? descriptionStyle;
+  final TextStyle? confirmButtonTextStyle;
+  final TextStyle? cancelButtonTextStyle;
+  final TextAlign? textAlignDescription;
+  final bool isHtml;
+  final VoidCallback? close;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Always visible title.
+        // Title area
         Row(
           children: [
-            if (close != null) SizedBox(width: 25),
+            if (close != null) const SizedBox(width: 25),
             Expanded(
               child: Text(
                 title,
@@ -72,33 +72,23 @@ class BodyDefaultAlert extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            close != null
-                ? InkWell(
-                    borderRadius: BorderRadius.circular(100),
-                    onTap: () {
-                      if (close != null) {
-                        close!();
-                      }
-                    },
-                    child: Ink(
-                      color: Colors.white,
-                      child: Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    ),
-                  )
-                : SizedBox()
+            if (close != null)
+              IconButton(
+                onPressed: close,
+                icon: const Icon(Icons.close, color: Colors.red),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
           ],
         ),
         const SizedBox(height: 20),
 
-        // Description with scrolling capability.
+        // Description
         Flexible(
           child: SingleChildScrollView(
-            child: isHtml == true
+            child: isHtml
                 ? HtmlWidget(
-                    description, // HTML content to be displayed.
+                    description,
                     textStyle: descriptionStyle ??
                         const TextStyle(
                           color: Colors.black54,
@@ -119,44 +109,41 @@ class BodyDefaultAlert extends StatelessWidget {
           ),
         ),
 
+        if (body != null) ...[
+          const SizedBox(height: 20),
+          body!,
+        ],
+
         const SizedBox(height: 20),
 
-        // Additional body widget, if provided.
-        body ?? const SizedBox(),
-        SizedBox(height: body != null ? 20 : 0),
-
-        // Always visible buttons.
+        // Buttons
         Row(
           children: [
-            cancelText != null && cancelAction != null
-                ? Expanded(
-                    child: MaterialButton(
-                      onPressed: () {
-                        if (cancelAction != null) cancelAction!();
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius)),
-                      height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
-                      color: cancelButtonColor ?? AwesomeAlertTheme().cancelButtonColor ?? Theme.of(context).colorScheme.error,
-                      child: Text(
-                        cancelText ?? "",
-                        style: cancelButtonTextStyle ??
-                            AwesomeAlertTheme().cancelButtonTextStyle ??
-                            const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                      ),
-                    ),
-                  )
-                : const SizedBox(),
-            Padding(padding: EdgeInsets.only(left: (cancelText != null && cancelAction != null) ? 10 : 0)),
+            if (cancelText != null && cancelAction != null)
+              Expanded(
+                child: MaterialButton(
+                  onPressed: cancelAction,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius)),
+                  height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
+                  color: cancelButtonColor ?? AwesomeAlertTheme().cancelButtonColor ?? Theme.of(context).colorScheme.error,
+                  child: Text(
+                    cancelText!,
+                    style: cancelButtonTextStyle ??
+                        AwesomeAlertTheme().cancelButtonTextStyle ??
+                        const TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                  ),
+                ),
+              ),
+            if (cancelText != null && cancelAction != null) const SizedBox(width: 10),
             Expanded(
               child: MaterialButton(
-                onPressed: () {
-                  confirmAction(); // Call the confirm action when the confirm button is pressed.
-                },
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius)),
+                onPressed: confirmAction,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonCornerRadius)),
                 height: AwesomeAlertTheme().buttonHeight ?? heightButtons,
                 color: confirmButtonColor ?? AwesomeAlertTheme().confirmButtonColor ?? Theme.of(context).colorScheme.primary,
                 child: Text(
@@ -176,3 +163,4 @@ class BodyDefaultAlert extends StatelessWidget {
     );
   }
 }
+
