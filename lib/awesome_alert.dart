@@ -1,4 +1,5 @@
 import 'package:awesome_alert/awesome_theme.dart';
+import 'package:awesome_alert/widgets/close_alert_route.dart';
 import 'package:awesome_alert/widgets/default_alert_body.dart';
 import 'package:awesome_alert/widgets/image_alert_body.dart';
 import 'package:flutter/material.dart';
@@ -352,7 +353,7 @@ class AwesomeAlert {
                                   if (buttonClick != null) {
                                     buttonClick();
                                   } else {
-                                    Navigator.pop(context);
+                                    closeAlertRoute(context);
                                   }
                                 },
                                 shape: RoundedRectangleBorder(
@@ -449,7 +450,7 @@ class AwesomeAlert {
                 child: Padding(
                   padding: EdgeInsets.all(AwesomeAlertTheme().internalBodyPadding ?? contentPadding),
                   child: BodyDefaultAlert(
-                    close: showCloseButton == true ? () => Navigator.of(context).pop() : null,
+                    close: showCloseButton == true ? () => closeAlertRoute(context) : null,
                     title: title,
                     description: description,
                     heightButtons: buttonHeight,
@@ -554,7 +555,7 @@ class AwesomeAlert {
       fixedSize: fixedSize,
       body: BodyAlertImage(
         type: type,
-        onClose: onDismiss ?? () => Navigator.of(context).pop(),
+        onClose: onDismiss,
         borderRadius: borderRadius ?? AwesomeAlertTheme().borderRadius,
         path: path,
         width: width,
@@ -633,7 +634,7 @@ class AwesomeAlert {
                     SizedBox(
                       width: double.infinity,
                       child: MaterialButton(
-                        onPressed: buttonClick ?? () => Navigator.pop(context),
+                        onPressed: buttonClick ?? () => closeAlertRoute(context),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(AwesomeAlertTheme().buttonRadius ?? buttonRadius),
                         ),

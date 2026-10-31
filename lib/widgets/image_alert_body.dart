@@ -2,13 +2,14 @@ import 'dart:io';
 
 import 'package:awesome_alert/awesome_theme.dart';
 import 'package:awesome_alert/image_type.dart';
+import 'package:awesome_alert/widgets/close_alert_route.dart';
 import 'package:flutter/material.dart';
 
 /// A widget to display an image inside an alert dialog.
 class BodyAlertImage extends StatelessWidget {
   const BodyAlertImage({
     super.key,
-    required this.onClose,
+    this.onClose,
     this.width,
     required this.borderRadius,
     required this.path,
@@ -18,7 +19,7 @@ class BodyAlertImage extends StatelessWidget {
     this.loadingColor,
   });
 
-  final VoidCallback onClose;
+  final VoidCallback? onClose;
   final double? width;
   final double borderRadius;
   final double closeIconSize;
@@ -95,7 +96,7 @@ class BodyAlertImage extends StatelessWidget {
             shape: const CircleBorder(),
             elevation: 2,
             child: IconButton(
-              onPressed: onClose,
+              onPressed: onClose ?? () => closeAlertRoute(context),
               icon: Icon(
                 Icons.close,
                 color: Colors.red,

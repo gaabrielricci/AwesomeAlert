@@ -1,3 +1,7 @@
+## 1.2.1
+
+* **Fix**: the built-in close buttons (X, "Voltar" and the image close) no longer call `Navigator.pop` twice on a double tap. They now close only while the alert is the topmost route, which avoids `Bad state: No element` (and popping the screen underneath) reported in production.
+
 ## 1.2.0
 
 * **API Modernization**: Introduced new static methods for a cleaner developer experience: `AwesomeAlert.show`, `showLoading`, `showImage`, `showList`, and `showCustom`.
